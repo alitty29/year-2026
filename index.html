@@ -41,35 +41,40 @@ input { padding:10px; border-radius:8px; border:none; margin:5px; }
 
 <!-- HOME -->
 <div id="home" class="screen">
-  <button onclick="loggedUser ? showScreen('mission') : showScreen('login')">START</button>
+  <button onclick="loggedUser ? showScreen('start') : showScreen('login')">START</button>
   <button onclick="showScreen('rewards')">REWARDS</button>
-  <button onclick="showScreen('disposalMenu')">RECOMMENDATION</button>
+  <button onclick="showScreen('feedback')">FEEDBACK</button>
 </div>
 
 <!-- LOGIN -->
 <div id="login" class="screen">
-  <h2>Mission Login</h2>
+  <h2>Start Login</h2>
   <input id="username" placeholder="Enter your name">
   <button onclick="login()">Login</button>
   <button onclick="showScreen('home')">Back</button>
 </div>
 
-<!-- MISSION -->
-<div id="mission" class="screen">
-  <h2>Missions</h2>
+<!-- START -->
+<div id="start" class="screen">
+  <h2>Start</h2>
 
-  <div class="mission-item">
-    Report Illegal Waste (5 pts)
+  <div class="start-item">
+    wacky face (10 pts)
     <input type="file" accept="image/*" onchange="completeMission(this,'illegal',10)">
   </div>
 
-  <div class="mission-item">
-    Scan EcoWatch QR (5 pts)
+  <div class="start-item">
+    t pose (10 pts)
     <input type="file" accept="image/*" onchange="completeMission(this,'qr',10)">
   </div>
 
-  <div class="mission-item">
-    Proper Waste Disposal (10 pts)
+  <div class="start-item">
+    hand stand (10 pts)
+    <input type="file" accept="image/*" onchange="completeMission(this,'proper',10)">
+  </div>
+  
+  <div class="start-item">
+    weird position (10 pts)
     <input type="file" accept="image/*" onchange="completeMission(this,'proper',10)">
   </div>
 
@@ -84,15 +89,16 @@ input { padding:10px; border-radius:8px; border:none; margin:5px; }
   <div class="section-box">20 pesos – 10 pts <button onclick="redeem(10)">Redeem</button></div>
   <div class="section-box">50 pesos – 20 pts <button onclick="redeem(20)">Redeem</button></div>
   <div class="section-box">100 pesos – 30 pts <button onclick="redeem(30)">Redeem</button></div>
+  <div class="section-box">200 pesos – 40 pts <button onclick="redeem(30)">Redeem</button></div>
   <button onclick="showScreen('home')">Home</button>
 </div>
 
-<!-- DISPOSAL MENU -->
-<div id="disposalMenu" class="screen">
-  <h2>Waste Disposal</h2>
+<!-- FEEDBACK -->
+<div id="feedback" class="screen">
+  <h2><!-- FEEDBACK --></h2>
   <div id="companyInputDiv">
-    <input id="companyName" placeholder="Company Name">
-    <button onclick="submitCompany()">Submit</button>
+    <input id="feedback" placeholder="feedback">
+    <button onclick="feedback()">Submit</button>
     <button onclick="showScreen('home')">Home</button>
   </div>
   <div id="wasteButtons" style="display:none; flex-direction: column;">
@@ -171,15 +177,15 @@ function login(){
   showScreen("mission");
 }
 
-/* ---------- MISSIONS ---------- */
-function completeMission(input, id, pts){
+/* ---------- START ---------- */
+function completestart(input, id, pts){
   if(!loggedUser) return alert("Login first");
   if(users[loggedUser].completed.includes(id)) return alert("Already completed");
   users[loggedUser].completed.push(id);
   users[loggedUser].points += pts;
   localStorage.setItem("users", JSON.stringify(users));
   syncPoints();
-  alert("Mission completed! +" + pts);
+  alert("start completed! +" + pts);
 }
 
 /* ---------- REWARDS ---------- */
@@ -198,7 +204,7 @@ function syncPoints(){
   document.getElementById("points").innerText = totalPoints;
 }
 
-/* ---------- DISPOSAL ---------- */
+/* ---------- FEEDBACK ---------- */
 let currentCompany="", recordCompany="";
 
 function submitCompany(){
