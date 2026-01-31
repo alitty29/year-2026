@@ -41,7 +41,6 @@ input { padding:10px; border-radius:8px; border:none; margin:5px; }
 
 <!-- HOME -->
 <div id="home" class="screen">
-  <h1>aletheia website</h1>
   <button onclick="loggedUser ? showScreen('mission') : showScreen('login')">Mission</button>
   <button onclick="showScreen('rewards')">Rewards</button>
   <button onclick="showScreen('disposalMenu')">comments</button>
@@ -61,12 +60,12 @@ input { padding:10px; border-radius:8px; border:none; margin:5px; }
 
   <div class="mission-item">
     Report Illegal Waste (5 pts)
-    <input type="file" accept="image/*" onchange="completeMission(this,'illegal',5)">
+    <input type="file" accept="image/*" onchange="completeMission(this,'illegal',10)">
   </div>
 
   <div class="mission-item">
     Scan EcoWatch QR (5 pts)
-    <input type="file" accept="image/*" onchange="completeMission(this,'qr',5)">
+    <input type="file" accept="image/*" onchange="completeMission(this,'qr',10)">
   </div>
 
   <div class="mission-item">
@@ -82,9 +81,9 @@ input { padding:10px; border-radius:8px; border:none; margin:5px; }
   <h1>Rewards</h1>
   <h2>Points: <span id="points">0</span></h2>
 
-  <div class="section-box">Sticker – 10 pts <button onclick="redeem(10)">Redeem</button></div>
-  <div class="section-box">Eco Bag – 20 pts <button onclick="redeem(20)">Redeem</button></div>
-  <div class="section-box">Tumbler – 30 pts <button onclick="redeem(30)">Redeem</button></div>
+  <div class="section-box">20 pesos – 10 pts <button onclick="redeem(10)">Redeem</button></div>
+  <div class="section-box">50 pesos – 20 pts <button onclick="redeem(20)">Redeem</button></div>
+  <div class="section-box">100 pesos – 30 pts <button onclick="redeem(30)">Redeem</button></div>
   <button onclick="showScreen('home')">Home</button>
 </div>
 
@@ -94,6 +93,7 @@ input { padding:10px; border-radius:8px; border:none; margin:5px; }
   <div id="companyInputDiv">
     <input id="companyName" placeholder="Company Name">
     <button onclick="submitCompany()">Submit</button>
+    <button onclick="showScreen('home')">Home</button>
   </div>
   <div id="wasteButtons" style="display:none; flex-direction: column;">
     <button onclick="logWeight('Biodegradable')">Biodegradable</button>
